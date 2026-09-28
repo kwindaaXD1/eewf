@@ -1,0 +1,85 @@
+{
+  "manifest_version": 3,
+  "name": "ParaDox Premium",
+  "version": "4.2.1",
+  "description": "Dola video workflow companion with prompt tools and a raw-stream downloader.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "sidePanel",
+    "scripting",
+    "downloads",
+    "notifications",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "https://dola.com/*",
+    "https://www.dola.com/*",
+    "*://*.dola.com/*",
+    "*://*.doubao.com/*",
+    "*://*.seaart.ai/*",
+    "*://*.byteintl.com/*",
+    "*://*.ibytedtos.com/*",
+    "https://dola.com/*",
+    "https://www.dola.com/*",
+    "https://doubao.com/*",
+    "https://www.doubao.com/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "ParaDox Premium",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "dox.png",
+      "48": "dox.png",
+      "128": "dox.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://dola.com/*",
+        "https://www.dola.com/*",
+        "*://*.dola.com/*",
+        "https://doubao.com/*",
+        "https://www.doubao.com/*",
+        "*://*.doubao.com/*",
+        "*://*.seaart.ai/*"
+      ],
+      "js": [
+        "extractor.js",
+        "inject.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://dola.com/*",
+        "https://www.dola.com/*",
+        "*://*.dola.com/*",
+        "https://doubao.com/*",
+        "https://www.doubao.com/*",
+        "*://*.doubao.com/*",
+        "*://*.seaart.ai/*",
+        "https://dola.com/*",
+        "https://www.dola.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "dox.png",
+    "48": "dox.png",
+    "128": "dox.png"
+  }
+}

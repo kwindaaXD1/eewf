@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParaDox Premium</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="popup-redesign.css">
+</head>
+
+<body>
+    <div class="popup-container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="brand">
+                <img src="dox.png" class="avatar-img" alt="ParaDox Logo">
+                <div>
+                    <h1 class="title">ParaDox Premium</h1>
+                    <span class="version-badge" id="btn-reload-extension" style="cursor: pointer;"
+                        title="Click to Hot-Reload Extension">v5.0.3 Raw-Stream Fix</span>
+                </div>
+            </div>
+            <div class="active-badge" id="header-active-account" title="Currently Active Account">
+                🟢 Premium - Active
+            </div>
+        </div>
+
+        <!-- MAIN UNLOCKED INTERFACE (100% Free Edition) -->
+        <div id="main-unlocked-ui">
+            <!-- Navigation Tabs (5 Tabs) -->
+            <div class="nav-tabs">
+                <button class="nav-btn active" id="tab-generator">🎥 Studio</button>
+                <button class="nav-btn" id="tab-prompts">📝 Prompts</button>
+                <button class="nav-btn" id="tab-accounts">👥 Accounts</button>
+                <button class="nav-btn" id="tab-settings">⚙️ Settings</button>
+                <button class="nav-btn" id="tab-logs">📋 Logs</button>
+                <button class="nav-btn" id="tab-downloads">➕ Download</button>
+            </div>
+
+            <!-- TAB 1: STUDIO (Generator Section) -->
+            <div class="tab-content" id="view-generator">
+                <div class="status-card" style="padding: 2px 5px; margin-bottom: 2px;">
+                    <div class="pulse-dot" style="width: 5px; height: 5px;"></div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <div>
+                            <div class="status-title" style="font-size: 9.5px; font-weight: 800;">Dola AI Suite Ready
+                            </div>
+                            <div class="status-sub" id="status-credits-sub" style="font-size: 7.5px; color: #94a3b8;">
+                                ParaDox AI Video Workflow Suite</div>
+                        </div>
+                        <div class="badges-row" style="margin: 0; gap: 2px;">
+                            <span class="badge" style="padding: 1px 3px; font-size: 7.5px;"><strong
+                                    id="badge-duration">30s</strong></span>
+                            <span class="badge" style="padding: 1px 3px; font-size: 7.5px;"><strong
+                                    id="badge-ratio">9:16</strong></span>
+                            <span class="badge"
+                                style="padding: 1px 3px; font-size: 7.5px; background: rgba(239, 75, 43, 0.15); border-color: rgba(239, 75, 43, 0.4); color: #ffe69a;"><strong
+                                    id="badge-credits">6 Pts</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unified Generation Settings (Duration & Aspect Ratio) -->
+                <div class="duration-selector-card" style="padding: 3px 5px; margin-bottom: 2px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1px;">
+                        <span class="duration-label" style="font-size: 8px; margin: 0;">⚡ Video Duration:</span>
+                        <span style="font-size: 7px; color: #ff5a35; font-weight: 800;">SEEDANCE 2.5 (1 PT)</span>
+                    </div>
+                    <div class="duration-pill-row">
+                        <button class="dur-pill" data-dur="10">10s</button>
+                        <button class="dur-pill" data-dur="15">15s</button>
+                        <button class="dur-pill" data-dur="20">20s</button>
+                        <button class="dur-pill" data-dur="25">25s</button>
+                        <button class="dur-pill active" data-dur="30">30s</button>
+                        <button class="dur-pill" data-dur="60">60s</button>
+                    </div>
+
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-top: 2px; margin-bottom: 1px;">
+                        <span class="duration-label" style="font-size: 8px; margin: 0;">📐 Aspect Ratio:</span>
+                        <span style="font-size: 7px; color: #38bdf8; font-weight: 800;">SEEDANCE 2.5</span>
+                    </div>
+                    <div class="ratio-pill-row">
+                        <button class="ratio-pill active" data-ratio="9:16">9:16</button>
+                        <button class="ratio-pill" data-ratio="16:9">16:9</button>
+                        <button class="ratio-pill" data-ratio="1:1">1:1</button>
+                        <button class="ratio-pill" data-ratio="3:4">3:4</button>
+                        <button class="ratio-pill" data-ratio="4:3">4:3</button>
+                        <button class="ratio-pill" data-ratio="21:9">21:9</button>
+                    </div>
+
+                    <!-- 🔄 OMNI REFERENCE (CLICK TO ATTACH) -->
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-top: 2px; padding-top: 8px; border-top: 1px dashed rgba(239, 75, 43, 0.25);">
+                        <span class="duration-label" style="font-size: 12px; margin: 0; color: #ffe69a;">🔄 Omni
+                            Reference:</span>
+                        <button id="btn-toggle-omni-mode" class="omni-slider-toggle"
+                            style="display: flex; align-items: center; gap: 3px; cursor: pointer; background: linear-gradient(135deg, rgba(189, 50, 30, 0.3), rgba(239, 75, 43, 0.25)); border: 1px solid #ff5a35; border-radius: 10px; padding: 1px 5px; transition: all 0.2s ease; user-select: none; margin-top: 8px;"
+                            title="Click to attach last video frame into composer on Dola">
+                            <span id="omni-slider-indicator"
+                                style="display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: #ffe69a; box-shadow: 0 0 3px #ffe69a;"></span>
+                            <span id="omni-slider-label"
+                                style="font-size: 7px; font-weight: 800; color: #f8fafc; letter-spacing: 0.2px;">➕
+                                Attach Last Frame</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ⚡ 10-TAB PARALLEL FARM & BATCH CONTROLLER -->
+                <div class="farm-selector-card" id="farm-control-card"
+                    style="padding: 3px 5px; margin-bottom: 2px; background: linear-gradient(135deg, rgba(189, 50, 30, 0.12), rgba(99, 102, 241, 0.08)); border: 1px solid rgba(239, 75, 43, 0.35); border-radius: 7px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                        <span
+                            style="font-size: 12px; font-weight: 800; color: #ff5a35; display: flex; align-items: center; gap: 2px;">
+                            ⚡ 10-TAB PARALLEL FARM
+                        </span>
+                        <span id="farm-batch-badge" class="badge"
+                            style="font-size: 10px; padding: 1px 1px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8;">
+                            Batch #1 (5 Accs × 2 Slots)
+                        </span>
+                    </div>
+
+                    <!-- Clean 3-Column Stats Grid -->
+                    <div class="farm-stats-grid"
+                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 8px; margin-top: 8px;">
+                        <div class="farm-stat-chip"
+                            style="background: rgba(25, 24, 23, 0.85); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 4px; padding: 1px; text-align: center;">
+                            <span style="font-size: 6.5px; color: #94a3b8; display: block; line-height: 1;">👥
+                                Accounts</span>
+                            <strong id="farm-acc-count" style="font-size: 8px; color: #34d399; font-weight: 800;">0
+                                Loaded</strong>
+                        </div>
+                        <div class="farm-stat-chip"
+                            style="background: rgba(25, 24, 23, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 4px; padding: 1px; text-align: center;">
+                            <span style="font-size: 6.5px; color: #94a3b8; display: block; line-height: 1;">📝
+                                Prompts</span>
+                            <strong id="farm-prompt-count" style="font-size: 8px; color: #38bdf8; font-weight: 800;">0
+                                Ready</strong>
+                        </div>
+                        <div class="farm-stat-chip"
+                            style="background: rgba(25, 24, 23, 0.85); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 4px; padding: 1px; text-align: center;">
+                            <span style="font-size: 6.5px; color: #94a3b8; display: block; line-height: 1;">📦
+                                Batches</span>
+                            <strong id="farm-total-batches" style="font-size: 8px; color: #f59e0b; font-weight: 800;">0
+                                Batches</strong>
+                        </div>
+                    </div>
+
+                    <!-- 2 Side-by-Side Left/Right Farm Action Buttons -->
+                    <div class="actions-grid-2col"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px;margin-bottom: 8px;">
+                        <button id="btn-launch-farm" class="btn-primary"
+                            style="background: linear-gradient(135deg, #059669, #10b981); border: 1px solid #34d399; padding: 2px; font-size: 8.5px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0px; min-height: 25px; margin: 0;"
+                            title="Spawn 10 tabs across 10 accounts and inject 10 prompts">
+                            <span style="font-weight: 800; line-height: 1;">🚀 LAUNCH 10 TABS</span>
+                            <span id="label-launch-batch"
+                                style="font-size: 6.5px; opacity: 0.9; font-weight: normal; line-height: 1;">(Accounts
+                                1–10 • 10 Slots)</span>
+                        </button>
+
+                        <button id="btn-next-batch" class="btn-primary"
+                            style="background: linear-gradient(135deg, #ef4b2b, #bd321e); border: 1px solid #ff5a35; padding: 2px; font-size: 8.5px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0px; min-height: 25px; margin: 0;"
+                            title="Switch 10 tabs to next 10 accounts and inject next 10 prompts">
+                            <span style="font-weight: 800; line-height: 1;">⚡ NEXT BATCH</span>
+                            <span id="label-next-batch"
+                                style="font-size: 6.5px; opacity: 0.9; font-weight: normal; line-height: 1;">(Accounts
+                                11–20 ➔ P11–20)</span>
+                        </button>
+                    </div>
+
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-top: 2px; padding-top: 1px; border-top: 1px dashed rgba(239, 75, 43, 0.2);">
+                        <span id="farm-status-text"
+                            style="font-size: 7px; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px;margin-top: 8px;">10
+                            Accounts × 1 Slot = 10 Parallel Prompts</span>
+                        <button id="btn-close-farm" class="btn-mini-delete"
+                            style="font-size: 7px; padding: 1px 3px; display: none;"
+                            title="Close all 10 active farm tabs">
+                            ✕ Close
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fast Actions Group: 2 Side-by-Side Left/Right Quick Action Buttons -->
+                <div style="display: flex; flex-direction: column; gap: 2px;">
+                    <div class="actions-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;">
+                        <button id="btn-open-studio" class="btn-primary"
+                            style="padding: 2px 3px; font-size: 8.5px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0px; min-height: 25px; margin: 0;">
+                            <span style="font-weight: 800; line-height: 1;">🎬 OPEN STUDIO</span>
+                            <span style="font-size: 6.5px; opacity: 0.85; font-weight: normal; line-height: 1;">(Open AI
+                                Video Studio)</span>
+                        </button>
+
+                        <button id="btn-fetch" class="btn-primary"
+                            style="background: linear-gradient(135deg, #ef4b2b, #ff5a35); border: 1px solid #ff5a35; box-shadow: 0 4px 12px rgba(189,50,30,0.25); font-size: 8.5px; padding: 2px 3px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0px; min-height: 25px; margin: 0;"
+                            title="Use Dola's native download controls">
+                            <span style="font-weight: 800; line-height: 1;">💽 FETCH VIDEO</span>
+                            <span style="font-size: 6.5px; opacity: 0.85; font-weight: normal; line-height: 1;">(Open
+                                no-watermark downloader)</span>
+                        </button>
+
+                        <button id="btn-download-zip" class="btn-primary"
+                            style="background: linear-gradient(135deg, #0284c7, #ff5a35); border: 1px solid #38bdf8; box-shadow: 0 4px 12px rgba(14,165,233,0.25); font-size: 8.5px; padding: 2px 3px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0px; min-height: 25px; margin: 0;"
+                            title="Package & download all chat videos into 1 single ZIP file">
+                            <span style="font-weight: 800; line-height: 1;">📦 BATCH ZIP</span>
+                            <span
+                                style="font-size: 6.5px; opacity: 0.85; font-weight: normal; line-height: 1;">(Download
+                                All)</span>
+                        </button>
+                    </div>
+
+                    <button id="btn-clear-session" class="btn-danger"
+                        style="padding: 1px 3px; font-size: 7.5px; min-height: 17px; margin: 0; margin-top: 8px;">
+                        🧹 Reset Local Session
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB 2: BULK PROMPTS -->
+            <div class="tab-content hidden" id="view-prompts">
+                <div class="section-header-row" style="margin-bottom: 2px;">
+                    <span class="section-title" style="font-size: 10px;">📝 BULK PROMPTS (<span
+                            id="prompt-counter">0</span>)</span>
+                    <div style="display: flex; gap: 3px;">
+                        <input type="file" id="file-upload-prompts" accept=".csv, .txt" style="display: none;">
+                        <button id="btn-trigger-upload" class="btn-mini-primary"
+                            style="padding: 2px 6px; min-height: 22px; font-size: 8.5px;"
+                            title="Import CSV or TXT file">
+                            📁 Upload
+                        </button>
+                        <button id="btn-reset-progress" class="btn-mini-primary"
+                            style="background:#191817; border-color:#ff5a35; padding: 2px 6px; min-height: 22px; font-size: 8.5px;"
+                            title="Reset all Done checkmarks">
+                            🔄 Reset
+                        </button>
+                        <button id="btn-clear-prompts" class="btn-mini-delete"
+                            style="padding: 2px 6px; min-height: 22px; font-size: 8.5px;" title="Clear all prompts">
+                            🗑️ Clear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 🔍 Live Search Bar & Status Filters -->
+                <div class="search-filter-row" style="gap: 3px;">
+                    <input type="text" id="input-search-prompts" class="input-search"
+                        style="padding: 4px 8px; min-height: 26px; font-size: 10.5px;"
+                        placeholder="🔍 Search prompts (e.g. Lotus, Siren)...">
+                    <div class="filter-pills-row" style="gap: 3px;">
+                        <button class="filter-pill active" data-filter="all"
+                            style="padding: 2px 4px; min-height: 22px; font-size: 8.5px;">All (<span
+                                id="count-all">0</span>)</button>
+                        <button class="filter-pill" data-filter="queued"
+                            style="padding: 2px 4px; min-height: 22px; font-size: 8.5px;">⚪ Queued (<span
+                                id="count-queued">0</span>)</button>
+                        <button class="filter-pill" data-filter="done"
+                            style="padding: 2px 4px; min-height: 22px; font-size: 8.5px;">✅ Done (<span
+                                id="count-done">0</span>)</button>
+                    </div>
+                </div>
+
+                <!-- Fast Paste Box -->
+                <div class="prompt-input-card" style="padding: 5px; gap: 3px;">
+                    <textarea id="textarea-quick-prompts" class="input-textarea"
+                        style="min-height: 38px; max-height: 65px; padding: 4px 6px; font-size: 10px;"
+                        placeholder="Paste bulk prompts here (1 per line, paragraphs, or CSV)..."></textarea>
+                    <div id="paragraph-prompt-hint"
+                        style="display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8; padding: 0 2px;">
+                        <span>Leave 1 blank line between multi-line prompts</span>
+                        <span>Detected: <strong id="detected-prompts-count" style="color: #ffe69a;">0</strong></span>
+                    </div>
+                    <button id="btn-add-bulk-prompts" class="btn-primary"
+                        style="margin-top: 1px; padding: 4px; min-height: 26px; font-size: 9px;">
+                        ➕ Add Prompts to List
+                    </button>
+                </div>
+
+                <!-- Numbered Prompts List -->
+                <div class="prompts-list" id="prompts-container"
+                    style="flex: 1 1 0%; min-height: 180px; max-height: none; gap: 3px;">
+                    <div class="empty-state" style="padding: 12px 6px; font-size: 9.5px;">No prompts loaded yet. Upload
+                        a CSV/TXT or paste prompts above.</div>
+                </div>
+            </div>
+
+            <!-- TAB 3: BULK ACCOUNTS -->
+            <div class="tab-content hidden" id="view-accounts">
+                <div class="section-header-row" style="margin-bottom: 2px;">
+                    <span class="section-title" style="font-size: 10px;">👥 BULK ACCOUNTS (<span
+                            id="accounts-counter">0</span>)</span>
+                    <div style="display: flex; gap: 3px;">
+                        <input type="file" id="file-upload-accounts" multiple accept=".json, .txt, .netscape, .csv"
+                            style="display: none;">
+                        <button id="btn-close-all-account-tabs" class="btn-mini-delete"
+                            style="padding: 2px 6px; min-height: 22px; font-size: 8.5px; font-weight: 700; white-space: nowrap;"
+                            title="Close all open Dola / account tabs in Chrome">
+                            ✕ Close Tabs
+                        </button>
+                        <button id="btn-trigger-upload-accounts" class="btn-mini-primary"
+                            style="padding: 2px 6px; min-height: 22px; font-size: 8.5px;"
+                            title="Import multiple cookie files from Desktop/PC">
+                            📁 Upload
+                        </button>
+                        <button id="btn-capture-session" class="btn-mini-primary"
+                            style="padding: 2px 6px; min-height: 22px; font-size: 8.5px;"
+                            title="Capture active tab logged in account">
+                            + Capture
+                        </button>
+                        <button id="btn-clear-all-accounts" class="btn-mini-delete"
+                            style="padding: 2px 6px; min-height: 22px; font-size: 8.5px;" title="Clear all accounts">
+                            🗑️ Clear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 🔍 Live Account Search Bar -->
+                <div class="search-filter-row" style="gap: 3px;">
+                    <input type="text" id="input-search-accounts" class="input-search"
+                        style="padding: 4px 8px; min-height: 26px; font-size: 10.5px;"
+                        placeholder="🔍 Search accounts (e.g. Account 1, VIP)...">
+                </div>
+
+                <!-- Quick Paste Box for Single/Multi Account Cookies -->
+                <div class="prompt-input-card" style="padding: 5px; gap: 3px;">
+                    <input type="text" id="input-profile-name" class="input-text"
+                        style="margin-bottom: 2px; padding: 3px 6px; min-height: 24px; font-size: 10px;"
+                        placeholder="Account Name (blank to auto-number #01, #02...)">
+                    <textarea id="input-profile-cookies" class="input-textarea"
+                        style="min-height: 38px; max-height: 65px; padding: 4px 6px; font-size: 10px;"
+                        placeholder="Paste JSON array, Netscape format, or multi-account cookies..."></textarea>
+                    <button id="btn-import-profile" class="btn-primary"
+                        style="margin-top: 2px; padding: 4px; min-height: 28px; font-size: 9.5px;">
+                        ➕ Add / Import Account Cookies
+                    </button>
+                </div>
+
+                <!-- Numbered & Styled Accounts List -->
+                <div class="profiles-list" id="profiles-container"
+                    style="flex: 1 1 0%; min-height: 180px; max-height: none; gap: 3px;">
+                    <div class="empty-state" style="padding: 12px 6px; font-size: 9.5px;">No saved accounts yet. Click
+                        "Upload Files" or "Capture Tab" above.</div>
+                </div>
+            </div>
+
+            <!-- TAB 4: SETTINGS -->
+            <div class="tab-content hidden" id="view-settings">
+                <div class="settings-list" style="gap: 4px;">
+                    <div class="setting-item"
+                        style="flex-direction: column; align-items: flex-start; gap: 2px; padding: 5px 8px; background: rgba(52, 211, 153, 0.08); border-color: rgba(52, 211, 153, 0.3);">
+                        <div style="font-size: 12px; font-weight: 800; color: #34d399;">💎 VIP LICENSE STATUS</div>
+                        <div id="settings-license-info" style="font-size: 16px; color: #cbd5e1;">Activated (Lifetime
+                            VIP Pro)</div>
+                    </div>
+                    <label class="setting-item" style="padding: 5px 8px; font-size: 16px;">
+                        <span>Project Duration</span>
+                        <select id="sel-duration" class="select-box"
+                            style="padding: 2px 4px; min-height: 24px; font-size: 9.5px; width: auto;">
+                            <option value="60">60s Project (Still on BUG)</option>
+                            <option value="30" selected>30s Project</option>
+                            <option value="25">25s Project</option>
+                            <option value="20">20s Project</option>
+                            <option value="15">15s Project</option>
+                            <option value="10">10s Project</option>
+                        </select>
+                    </label>
+                    <label class="setting-item" style="padding: 5px 8px; font-size: 16px;">
+                        <span>Account Maximum Credit Points Limit</span>
+                        <select id="sel-credit-limit" class="select-box"
+                            style="padding: 2px 4px; min-height: 24px; font-size: 9.5px; width: auto;">
+                            <option value="6" selected>6 Credits (3 Videos • Standard Daily)</option>
+                            <option value="10">10 Credits (5 Videos • High Quota / Day-1)</option>
+                        </select>
+                    </label>
+                    <label class="setting-item" style="padding: 5px 8px; font-size: 16px;">
+                        <span>Daily Limit Auto-Account Rotator</span>
+                        <input type="checkbox" id="chk-autorotate" checked>
+                    </label>
+                    <label class="setting-item" style="padding: 5px 8px; font-size: 16px;">
+                        <span>Auto-Advance to Next Prompt on Send</span>
+                        <input type="checkbox" id="chk-autonext" checked>
+                    </label>
+                    <label class="setting-item" style="padding: 5px 8px; font-size: 16px;">
+                        <span>Auto-Download Finished Videos</span>
+                        <input type="checkbox" id="chk-auto-dl" checked>
+                    </label>
+                    <label class="setting-item" style="padding: 5px 8px; font-size: 16px;">
+                        <span>Smart Brand & Stunt Auto-Sanitizer</span>
+                        <input type="checkbox" id="chk-safety" checked>
+                    </label>
+                    <label class="setting-item"
+                        style="padding: 5px 8px; font-size: 16px; background: rgba(14, 165, 233, 0.08); border-color: rgba(14, 165, 233, 0.3);">
+                        <span style="color: #38bdf8; font-weight: 700;">🚀 Performance Mode</span>
+                        <input type="checkbox" id="chk-telemetry-shield" checked>
+                    </label>
+                    <label class="setting-item"
+                        style="padding: 5px 8px; font-size: 16px; background: rgba(239, 75, 43, 0.08); border-color: rgba(239, 75, 43, 0.3);">
+                        <span style="color: #ffe69a; font-weight: 700;">🎭 Anti-Fingerprint Hardware Masking</span>
+                        <input type="checkbox" id="chk-fingerprint-mask" checked>
+                    </label>
+                    <label class="setting-item"
+                        style="padding: 5px 8px; font-size: 16px; background: rgba(239, 75, 43, 0.08); border-color: rgba(239, 75, 43, 0.3);">
+                        <span style="color: #ffe69a; font-weight: 700;">🔄 Omni-Ref Last-Frame Continuation (CapCut
+                            Style)</span>
+                        <input type="checkbox" id="chk-omni-chain" checked>
+                    </label>
+
+                    <!-- 🏷️ SMART DOWNLOAD FILENAME FORMATTER -->
+                    <div class="setting-item"
+                        style="flex-direction: column; align-items: stretch; gap: 5px; padding: 7px 8px; background: rgba(36, 30, 26, 0.7); border: 1px solid rgba(239, 75, 43, 0.4); border-radius: 7px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span
+                                style="font-size: 18px; font-weight: 800; color: #ffe69a; display: flex; align-items: center; gap: 3px;">
+                                🏷️ SMART FILENAME FORMATTER
+                            </span>
+                            <span class="badge"
+                                style="font-size: 14px; padding: 1px 4px; background: rgba(239, 75, 43, 0.2); color: #ffe69a; border: 1px solid rgba(239, 75, 43, 0.4);">Auto-Renamer</span>
+                        </div>
+
+                        <!-- Quick Presets Dropdown -->
+                        <div style="display: flex; flex-direction: column; gap: 2px;">
+                            <span style="font-size: 12px; color: #94a3b8; font-weight: 600;">Naming Preset:</span>
+                            <select id="sel-filename-preset" class="select-box"
+                                style="padding: 2px 4px; min-height: 22px; font-size: 9px; width: 100%;">
+                                <option value="{prompt}_{duration}">1. Clean Prompt & Duration ({prompt}_{duration})
+                                </option>
+                                <option value="{prompt}_{date}_{time}">2. Prompt + Date & Time ({prompt}_{date}_{time})
+                                </option>
+                                <option value="[{account}]_{prompt}_{duration}">3. Account First
+                                    ([{account}]_{prompt}_{duration})</option>
+                                <option value="Clip_{index}_{prompt}">4. Numbered Sequence (Clip_{index}_{prompt})
+                                </option>
+                                <option value="Paradox_{prompt}_{resolution}">5. Brand + 1080P
+                                    (ParaDox_{prompt}_{resolution})</option>
+                                <option value="custom">⚙️ Custom Pattern...</option>
+                            </select>
+                        </div>
+
+                        <!-- Pattern Input -->
+                        <div style="display: flex; flex-direction: column; gap: 2px;">
+                            <span style="font-size: 12px; color: #94a3b8; font-weight: 600;">Filename Pattern:</span>
+                            <input type="text" id="input-filename-pattern" class="input-text"
+                                style="padding: 3px 6px; min-height: 24px; font-size: 9.5px; font-family: monospace; color: #38bdf8;"
+                                value="{prompt}_{duration}">
+                        </div>
+
+                        <!-- Clickable Token Tag Chips -->
+                        <div style="display: flex; flex-wrap: wrap; gap: 3px; align-items: center;">
+                            <span
+                                style="font-size: 12px; color: #64748b; font-weight: 600; margin-right: 1px;">Tags:</span>
+                            <button type="button" class="btn-tag-chip" data-tag="{prompt}"
+                                style="background: rgba(239, 75, 43, 0.15); border: 1px solid rgba(239, 75, 43, 0.3); border-radius: 3px; padding: 1px 4px; font-size: 7.5px; color: #ffe69a; cursor: pointer;">{prompt}</button>
+                            <button type="button" class="btn-tag-chip" data-tag="{account}"
+                                style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 3px; padding: 1px 4px; font-size: 7.5px; color: #38bdf8; cursor: pointer;">{account}</button>
+                            <button type="button" class="btn-tag-chip" data-tag="{duration}"
+                                style="background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 3px; padding: 1px 4px; font-size: 7.5px; color: #34d399; cursor: pointer;">{duration}</button>
+                            <button type="button" class="btn-tag-chip" data-tag="{date}"
+                                style="background: rgba(251, 191, 36, 0.15); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 3px; padding: 1px 4px; font-size: 7.5px; color: #fbbf24; cursor: pointer;">{date}</button>
+                            <button type="button" class="btn-tag-chip" data-tag="{time}"
+                                style="background: rgba(255, 212, 59, 0.15); border: 1px solid rgba(255, 212, 59, 0.3); border-radius: 3px; padding: 1px 4px; font-size: 7.5px; color: #ffd43b; cursor: pointer;">{time}</button>
+                            <button type="button" class="btn-tag-chip" data-tag="{index}"
+                                style="background: rgba(255, 212, 59, 0.15); border: 1px solid rgba(255, 212, 59, 0.3); border-radius: 3px; padding: 1px 4px; font-size: 7.5px; color: #ffe69a; cursor: pointer;">{index}</button>
+                            <button type="button" class="btn-tag-chip" data-tag="{resolution}"
+                                style="background: rgba(239, 75, 43, 0.15); border: 1px solid rgba(239, 75, 43, 0.3); border-radius: 3px; padding: 1px 4px; font-size: 7.5px; color: #ff5a35; cursor: pointer;">{resolution}</button>
+                        </div>
+
+                        <!-- Live Preview Box -->
+                        <div
+                            style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(51, 65, 85, 0.6); border-radius: 4px; padding: 3px 6px; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="font-size: 12px; color: #64748b; font-weight: 700;">PREVIEW:</span>
+                            <span id="filename-preview-text"
+                                style="font-size: 12px; font-family: monospace; color: #4ade80; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 210px;">Golden_Lotus_Goddess_30s_HD.mp4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: LOGS -->
+            <div class="tab-content hidden" id="view-logs">
+                <div class="terminal" id="terminal">
+                    [Ready] ParaDox Premium v4.2.1 initialized.<br>
+                    [Downloads] Fetch tab supports Dola and Doubao video pages; canceled downloads stay canceled across
+                    restarts.<br>
+                    [Duration and ratio] UI preferences are saved; Dola controls apply them when supported.<br>
+                    [Prompt queue] Local prompt list and progress tracking are available.<br>
+                    [Accounts] Cookie import and account automation are not enabled in this build.
+                </div>
+            </div>
+
+            <!-- TAB 6: DOLA / DOUBAO VIDEO DOWNLOADER -->
+            <div class="tab-content hidden" id="view-downloads">
+                <div class="dl-heading-row">
+                    <div>
+                        <div class="dl-title">Dola Video Downloader</div>
+                        <div class="dl-subtitle">Auto-save or fetch the raw stream after the page resolves it.</div>
+                        <div class="dl-subtitle">Credits to Ahmed Al MALKI</div>
+                    </div>
+                    <span class="dl-quality">1080p RAW</span>
+                </div>
+
+                <section class="dl-section">
+                    <div class="dl-toggle-row">
+                        <div>
+                            <div class="dl-section-title">Automatic downloads</div>
+                            <div class="dl-muted">Download detected videos when generation finishes.</div>
+                        </div>
+                        <label class="dl-switch" title="Toggle automatic downloads">
+                            <input id="dola-auto-download-toggle" type="checkbox" unchecked>
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="dl-capabilities">Raw stream <span>•</span> No Watermark <span>•</span> Local
+                        download</div>
+                </section>
+
+                <section class="dl-section">
+                    <button id="btn-download-screen" class="dl-fetch-button" type="button">
+                        <span aria-hidden="true">⇩</span>
+                        <span id="btn-download-screen-text">Fetch latest video from this page</span>
+                    </button>
+                    <div class="dl-muted dl-help">Open a Dola or Doubao video page first. Watermarked preview URLs are
+                        skipped; Fetch waits for the raw stream.</div>
+                </section>
+
+                <section class="dl-section dl-folder-section">
+                    <div class="dl-stat-row">
+                        <div><span class="dl-muted">Total saved</span><strong id="dola-metric-count">0</strong></div>
+                        <div><span class="dl-muted">Stream quality</span><strong class="dl-green">1080p master</strong>
+                        </div>
+                    </div>
+                    <label for="dola-subfolder-input" class="dl-label">Downloads subfolder</label>
+                    <div class="dl-folder-row">
+                        <input id="dola-subfolder-input" class="dl-input" type="text" placeholder="Dola_Videos"
+                            spellcheck="false" maxlength="80">
+                        <button id="btn-dola-save-folder" class="dl-save-button" type="button">Save</button>
+                    </div>
+                    <div class="dl-muted">Saved under your browser’s Downloads folder.</div>
+                </section>
+
+                <section class="dl-section dl-history-section">
+                    <div class="dl-history-header">
+                        <div class="dl-section-title">Download history <span id="dola-history-count">0</span></div>
+                        <button id="btn-dola-clear-history" class="dl-clear-button" type="button">Clear</button>
+                    </div>
+                    <div id="dola-history-list" class="dl-history-list">
+                        <div class="dl-empty-state">No videos downloaded yet. Generate a video or use Fetch above.</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
+    <script src="popup.js"></script>
+    <script src="dola-downloader.js"></script>
+</body>
+
+</html>
